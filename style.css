@@ -2,62 +2,125 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 body {
   height: 100vh;
-  background-image: url("images/valentine.jpg"); /* fallback */
+  background-image: url("images/valentine.jpg");
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 }
 
+/* 🌸 Animated romantic overlay */
 .overlay {
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    -45deg,
+    rgba(255, 77, 109, 0.35),
+    rgba(0, 0, 0, 0.55),
+    rgba(255, 182, 193, 0.35)
+  );
+  background-size: 400% 400%;
+  animation: gradientFlow 12s ease infinite;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
   text-align: center;
+  padding: 24px;
 }
 
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 💖 Heading animation */
 h1 {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  animation: fadeSlide 1.4s ease forwards;
 }
 
 #dayMessage {
-  margin: 15px 0;
+  margin: 18px 0 28px;
   font-size: 1.2rem;
+  opacity: 0;
+  animation: fadeSlide 1.4s ease forwards;
+  animation-delay: 0.4s;
 }
 
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 🎀 Buttons */
 .buttons {
   display: flex;
   gap: 20px;
 }
 
+/* Base button */
 button {
-  padding: 15px 30px;
+  padding: 15px 32px;
   font-size: 1.1rem;
-  border-radius: 25px;
+  border-radius: 30px;
   border: none;
+  transition: all 0.3s ease;
 }
 
+/* ❤️ YES button glow */
 #yesBtn {
-  background: #ff4d6d;
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
   color: white;
   cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 77, 109, 0.6);
+  animation: pulseGlow 2.5s infinite;
 }
 
+#yesBtn:hover {
+  transform: scale(1.08) rotate(-1deg);
+  box-shadow: 0 0 30px rgba(255, 77, 109, 0.9);
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 77, 109, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+  }
+}
+
+/* 🙃 NO button */
 #noBtn {
-  background: gray;
+  background: rgba(255, 255, 255, 0.2);
   color: white;
+  opacity: 0.5;
   cursor: not-allowed;
-  opacity: 0.6;
 }
 
-/* Popup */
+/* 🌹 Popup */
 .popup {
   position: fixed;
   inset: 0;
@@ -65,28 +128,86 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(4px);
 }
 
+/* Popup hidden state */
 .hidden {
   display: none;
 }
 
+/* Popup content animation */
 .popup-content {
   position: relative;
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  color: black;
+  background: linear-gradient(135deg, #fff, #ffe4ea);
+  padding: 42px;
+  border-radius: 24px;
+  color: #333;
+  text-align: center;
   min-width: 280px;
+  animation: popupEnter 0.5s ease;
 }
 
-/* Close button */
+@keyframes popupEnter {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ❌ Close button */
 #closePopup {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 12px;
+  right: 14px;
   background: none;
   border: none;
   font-size: 1.3rem;
   cursor: pointer;
+  color: #666;
+  transition: transform 0.2s ease;
+}
+
+#closePopup:hover {
+  transform: scale(1.2);
+}
+
+/* 💖 Heart shimmer */
+.heart {
+  font-size: 2rem;
+  margin-top: 10px;
+  animation: heartBeat 1.6s infinite;
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.15);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 📱 Mobile polish */
+@media (max-width: 480px) {
+  .buttons {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
 }
