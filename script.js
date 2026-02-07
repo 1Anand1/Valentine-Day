@@ -32,3 +32,7 @@ document.getElementById("yesBtn").addEventListener("click", () => {
   console.log("YES clicked ❤️");
   document.getElementById("popup").classList.remove("hidden");
 });
+
+document.getElementById("closePopup").addEventListener("click", () => {
+  document.getElementById("popup").classList.add("hidden");
+});
