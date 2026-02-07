@@ -11,6 +11,7 @@ const valentineDays = {
   10: { img: "images/promise.jpg", msg: "I promise you always ❤️" },
   11: { img: "images/hug.jpg", msg: "A warm hug for you 🤗" },
   12: { img: "images/kiss.jpg", msg: "A kiss with love 💋" },
+  13: { img: "images/propose.jpg", msg: "I proposed you a long time back 💍" },
   14: { img: "images/valentine.jpg", msg: "Happy Valentine’s Day ❤️" },
 };
 
